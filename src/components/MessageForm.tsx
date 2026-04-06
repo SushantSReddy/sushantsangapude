@@ -1,15 +1,34 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Check } from "lucide-react";
+import { Send, Check, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const MessageForm = () => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !message.trim()) return;
+
+    setLoading(true);
+    setError("");
+
+    const { error: dbError } = await supabase
+      .from("messages")
+      .insert({ name: name.trim(), message: message.trim() });
+
+    setLoading(false);
+
+    if (dbError) {
+      setError("Failed to send message. Please try again.");
+      return;
+    }
+
+    const sentName = name;
     setSent(true);
     setTimeout(() => {
       setSent(false);
@@ -33,7 +52,7 @@ const MessageForm = () => {
             <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mb-4">
               <Check size={22} className="text-foreground" />
             </div>
-            <p className="font-medium text-foreground">Thank you, {name}!</p>
+            <p className="font-medium text-foreground">Thank you!</p>
             <p className="body-md text-sm mt-1">Your message has been received.</p>
           </motion.div>
         ) : (
@@ -54,6 +73,7 @@ const MessageForm = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
+                maxLength={100}
                 className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all duration-300"
                 placeholder="Your name"
               />
@@ -66,19 +86,27 @@ const MessageForm = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 required
+                maxLength={1000}
                 rows={4}
                 className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all duration-300 resize-none"
                 placeholder="Your message"
               />
             </div>
+            {error && (
+              <p className="text-sm text-destructive">{error}</p>
+            )}
             <motion.button
               type="submit"
+              disabled={loading}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover-lift transition-all duration-300"
+              className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover-lift transition-all duration-300 disabled:opacity-60"
             >
-              Send Message
-              <Send size={14} />
+              {loading ? (
+                <>Sending... <Loader2 size={14} className="animate-spin" /></>
+              ) : (
+                <>Send Message <Send size={14} /></>
+              )}
             </motion.button>
           </motion.form>
         )}
