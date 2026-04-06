@@ -58,7 +58,7 @@ const Navbar = () => {
           onClick={() => scrollTo("hero")}
           className="font-display font-bold text-lg text-foreground text-hover"
         >
-          Sushant
+          Sushant Sangapude
         </button>
 
         {/* Desktop */}
