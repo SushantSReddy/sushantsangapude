@@ -28,6 +28,11 @@ const MessageForm = () => {
       return;
     }
 
+    // Send Telegram notification (fire-and-forget)
+    supabase.functions.invoke('notify-telegram', {
+      body: { name: name.trim(), message: message.trim() },
+    }).catch(console.error);
+
     const sentName = name;
     setSent(true);
     setTimeout(() => {
