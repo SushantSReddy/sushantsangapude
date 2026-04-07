@@ -17,23 +17,17 @@ const MessageForm = () => {
     setLoading(true);
     setError("");
 
-    const { error: dbError } = await supabase
-      .from("messages")
-      .insert({ name: name.trim(), message: message.trim() });
+    const { data, error: fnError } = await supabase.functions.invoke('submit-message', {
+      body: { name: name.trim(), message: message.trim() },
+    });
 
     setLoading(false);
 
-    if (dbError) {
+    if (fnError) {
       setError("Failed to send message. Please try again.");
       return;
     }
 
-    // Send Telegram notification (fire-and-forget)
-    supabase.functions.invoke('notify-telegram', {
-      body: { name: name.trim(), message: message.trim() },
-    }).catch(console.error);
-
-    const sentName = name;
     setSent(true);
     setTimeout(() => {
       setSent(false);
