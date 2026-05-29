@@ -64,30 +64,34 @@ const MessageForm = () => {
             className="space-y-4"
           >
             <div>
-              <label className="text-xs uppercase tracking-[0.15em] text-muted-foreground/60 mb-2 block">
+              <label htmlFor="message-form-name" className="text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2 block">
                 Name
               </label>
               <input
+                id="message-form-name"
+                name="name"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
                 maxLength={100}
-                className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all duration-300"
+                className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all duration-300"
                 placeholder="Your name"
               />
             </div>
             <div>
-              <label className="text-xs uppercase tracking-[0.15em] text-muted-foreground/60 mb-2 block">
+              <label htmlFor="message-form-message" className="text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2 block">
                 Message
               </label>
               <textarea
+                id="message-form-message"
+                name="message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 required
                 maxLength={1000}
                 rows={4}
-                className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all duration-300 resize-none"
+                className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all duration-300 resize-none"
                 placeholder="Your message"
               />
             </div>

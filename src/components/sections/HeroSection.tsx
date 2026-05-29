@@ -30,7 +30,7 @@ const HeroSection = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="heading-xl mb-6 text-foreground"
         >
-          Sushant Sangapude
+          Sushant Sangapude — AI Enthusiast &amp; Student Portfolio
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
