@@ -1,0 +1,7 @@
+# Sushant Sangapude — AI & Tech Portfolio
+
+> Personal portfolio of Sushant Sangapude, a Class 11 student passionate about AI, technology, and innovation.
+
+## Pages
+
+- [Home](/): About, skills, projects, achievements, education, goals, and contact.
