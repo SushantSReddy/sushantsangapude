@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Github, Youtube, Globe, ExternalLink } from "lucide-react";
 
 const HeroSection = () => {
   const scrollToAbout = () =>
