@@ -69,6 +69,50 @@ const HeroSection = () => {
           Explore My Journey
           <ArrowDown size={16} />
         </motion.button>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.6 }}
+          className="mt-10 flex items-center justify-center gap-4"
+        >
+          <a
+            href="https://github.com/SushantSReddy"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-accent-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-110"
+          >
+            <Github size={18} />
+          </a>
+          <a
+            href="https://youtube.com/@sushantsangapude?si=A1JervLHDlC5zgep"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-accent-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-110"
+          >
+            <Youtube size={18} />
+          </a>
+          <a
+            href="https://www.duolingo.com/profile/SushantReddy?via=share_profile_qr"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Duolingo"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-accent-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-110"
+          >
+            <Globe size={18} />
+          </a>
+          <a
+            href="https://app.matiks.org/profile/sushantsreddy?referred_by=sushantsreddy"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Matiks"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-accent-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-110"
+          >
+            <ExternalLink size={18} />
+          </a>
+        </motion.div>
       </motion.div>
 
       <motion.div
