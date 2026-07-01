@@ -1,4 +1,4 @@
-import { Github, Youtube, Globe, ExternalLink } from "lucide-react";
+import { Github, Youtube, Globe, ExternalLink, Send } from "lucide-react";
 
 const Footer = () => (
   <footer className="py-12 text-center">
