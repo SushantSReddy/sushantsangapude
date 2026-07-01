@@ -1,4 +1,4 @@
-import { Github, Youtube, Globe, ExternalLink, ArrowUpRight } from "lucide-react";
+import { Github, Youtube, Globe, ExternalLink, Send, ArrowUpRight } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 
 const socials = [
@@ -19,6 +19,12 @@ const socials = [
     handle: "SushantReddy",
     url: "https://www.duolingo.com/profile/SushantReddy?via=share_profile_qr",
     icon: Globe,
+  },
+  {
+    name: "Telegram",
+    handle: "sushantsreddy",
+    url: "https://t.me/sushantsreddy",
+    icon: Send,
   },
   {
     name: "Matiks",
