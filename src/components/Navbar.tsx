@@ -17,7 +17,13 @@ const sections = [
 const Navbar = () => {
   const [active, setActive] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    const stored = localStorage.getItem("theme");
+    if (stored === "dark") return true;
+    if (stored === "light") return false;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -38,6 +44,7 @@ const Navbar = () => {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
+    localStorage.setItem("theme", dark ? "dark" : "light");
   }, [dark]);
 
   const scrollTo = (id: string) => {
@@ -84,24 +91,12 @@ const Navbar = () => {
               <span className="relative z-10">{s.label}</span>
             </button>
           ))}
-          <button
-            onClick={() => setDark(!dark)}
-            aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
-            className="ml-3 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-300"
-          >
-            {dark ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
+          <ThemeToggle dark={dark} setDark={setDark} className="ml-3" />
         </div>
 
         {/* Mobile */}
         <div className="flex md:hidden items-center gap-2">
-          <button
-            onClick={() => setDark(!dark)}
-            aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
-            className="p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors"
-          >
-            {dark ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
+          <ThemeToggle dark={dark} setDark={setDark} />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
