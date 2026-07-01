@@ -104,6 +104,15 @@ const HeroSection = () => {
             <Globe size={18} />
           </a>
           <a
+            href="https://t.me/sushantsreddy"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-accent-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-110"
+          >
+            <Send size={18} />
+          </a>
+          <a
             href="https://app.matiks.org/profile/sushantsreddy?referred_by=sushantsreddy"
             target="_blank"
             rel="noopener noreferrer"

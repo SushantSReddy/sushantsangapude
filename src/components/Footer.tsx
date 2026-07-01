@@ -31,6 +31,15 @@ const Footer = () => (
         <Globe size={16} />
       </a>
       <a
+        href="https://t.me/sushantsreddy"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Telegram"
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-accent-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-110"
+      >
+        <Send size={16} />
+      </a>
+      <a
         href="https://app.matiks.org/profile/sushantsreddy?referred_by=sushantsreddy"
         target="_blank"
         rel="noopener noreferrer"
