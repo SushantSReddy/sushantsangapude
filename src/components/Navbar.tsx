@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Moon, Sun, Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const sections = [
   { id: "hero", label: "Home" },
