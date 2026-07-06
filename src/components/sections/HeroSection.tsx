@@ -121,6 +121,15 @@ const HeroSection = () => {
           >
             <ExternalLink size={18} />
           </a>
+          <a
+            href="https://srlumina.lovable.app/home"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Srlumina"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-accent-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-110"
+          >
+            <ExternalLink size={18} />
+          </a>
         </motion.div>
       </motion.div>
 

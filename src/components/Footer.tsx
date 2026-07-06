@@ -48,6 +48,15 @@ const Footer = () => (
       >
         <ExternalLink size={16} />
       </a>
+      <a
+        href="https://srlumina.lovable.app/home"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Srlumina"
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-accent-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-110"
+      >
+        <ExternalLink size={16} />
+      </a>
     </div>
     <p className="text-xs text-muted-foreground/50 tracking-[0.15em] uppercase">
       Designed by Sushant
