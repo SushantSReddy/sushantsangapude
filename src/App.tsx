@@ -4,9 +4,23 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
+import Stats from "./pages/Stats.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import { usePageTracking } from "@/hooks/usePageTracking.ts";
 
 const queryClient = new QueryClient();
+
+const TrackedRoutes = () => {
+  usePageTracking();
+  return (
+    <Routes>
+      <Route path="/" element={<Index />} />
+      <Route path="/stats" element={<Stats />} />
+      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -14,11 +28,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <TrackedRoutes />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
