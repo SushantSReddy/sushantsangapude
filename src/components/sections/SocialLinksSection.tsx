@@ -33,7 +33,7 @@ const socials = [
     icon: ExternalLink,
   },
   {
-    name: "Sr Lumina",
+    name: "My Question Tracker App",
     handle: "srlumina.lovable.app",
     url: "https://srlumina.lovable.app/home",
     icon: ExternalLink,
