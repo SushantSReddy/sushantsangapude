@@ -32,6 +32,12 @@ const socials = [
     url: "https://app.matiks.org/profile/sushantsreddy?referred_by=sushantsreddy",
     icon: ExternalLink,
   },
+  {
+    name: "Sr Lumina",
+    handle: "srlumina.lovable.app",
+    url: "https://srlumina.lovable.app/home",
+    icon: ExternalLink,
+  },
 ];
 
 const SocialLinksSection = () => (
