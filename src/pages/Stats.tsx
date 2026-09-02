@@ -43,23 +43,25 @@ const Stats = () => {
       return;
     }
     setLoading(true);
-    supabase
-      .rpc("has_role", { _user_id: session.user.id, _role: "admin" })
-      .then(({ data }) => {
-        setIsAdmin(!!data);
-        if (!data) setLoading(false);
-      });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (supabase.rpc as any)("has_role", {
+      _user_id: session.user.id,
+      _role: "admin",
+    }).then(({ data }: { data: boolean | null }) => {
+      setIsAdmin(!!data);
+      if (!data) setLoading(false);
+    });
   }, [session]);
 
   useEffect(() => {
     if (!isAdmin) return;
-    supabase
-      .from("page_views")
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (supabase.from as any)("page_views")
       .select("*")
       .order("created_at", { ascending: false })
       .limit(200)
-      .then(({ data }) => {
-        setViews((data as PageView[]) ?? []);
+      .then(({ data }: { data: PageView[] | null }) => {
+        setViews(data ?? []);
         setLoading(false);
       });
   }, [isAdmin]);
