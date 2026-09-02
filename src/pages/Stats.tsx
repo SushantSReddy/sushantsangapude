@@ -81,10 +81,7 @@ const Stats = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-6 md:p-10">
-      <Helmet>
-        <title>Stats — Private</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+
 
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
