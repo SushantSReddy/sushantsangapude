@@ -12,6 +12,7 @@ const CHAT_ID = '8460523899'
 const BodySchema = z.object({
   name: z.string().trim().min(1).max(100),
   message: z.string().trim().min(1).max(1000),
+  type: z.enum(['message', 'guestbook']).default('message'),
 })
 
 // Simple in-memory rate limiter (per IP, 3 requests per minute)
