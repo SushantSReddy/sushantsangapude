@@ -44,13 +44,15 @@ const Stats = () => {
     }
     setLoading(true);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (supabase.rpc as any)("has_role", {
-      _user_id: session.user.id,
-      _role: "admin",
-    }).then(({ data }: { data: boolean | null }) => {
-      setIsAdmin(!!data);
-      if (!data) setLoading(false);
-    });
+    (supabase.from as any)("user_roles")
+      .select("role")
+      .eq("user_id", session.user.id)
+      .eq("role", "admin")
+      .maybeSingle()
+      .then(({ data }: { data: { role: string } | null }) => {
+        setIsAdmin(!!data);
+        if (!data) setLoading(false);
+      });
   }, [session]);
 
   useEffect(() => {
