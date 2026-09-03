@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -68,11 +69,14 @@ const Stats = () => {
       });
   }, [isAdmin]);
 
-  const signIn = () =>
-    supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: `${window.location.origin}/stats` },
+  const signIn = async () => {
+    const result = await lovable.auth.signInWithOAuth("google", {
+      redirect_uri: `${window.location.origin}/stats`,
     });
+    if (result.error) {
+      console.error("Sign-in failed:", result.error);
+    }
+  };
 
   const signOut = () => supabase.auth.signOut();
 
