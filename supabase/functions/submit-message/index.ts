@@ -12,6 +12,7 @@ const CHAT_ID = '8460523899'
 const BodySchema = z.object({
   name: z.string().trim().min(1).max(100),
   message: z.string().trim().min(1).max(1000),
+  type: z.enum(['message', 'guestbook']).default('message'),
 })
 
 // Simple in-memory rate limiter (per IP, 3 requests per minute)
@@ -62,21 +63,28 @@ Deno.serve(async (req) => {
     })
   }
 
-  const { name, message } = parsed.data
+  const { name, message, type } = parsed.data
 
   // Insert into database using service role
   const supabaseUrl = Deno.env.get('SUPABASE_URL')!
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
   const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
-  const { error: dbError } = await supabase
-    .from('messages')
-    .insert({ name, message })
+  const { error: dbError } = type === 'guestbook'
+    ? await supabase.from('guestbook_entries').insert({ name, note: message })
+    : await supabase.from('messages').insert({ name, message })
 
   if (dbError) {
     console.error('DB insert error:', dbError)
     return new Response(JSON.stringify({ error: 'Failed to save message' }), {
       status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
+
+  if (type === 'guestbook') {
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }

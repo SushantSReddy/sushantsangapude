@@ -1,6 +1,7 @@
 import { Mail, Phone } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 import MessageForm from "../MessageForm";
+import GuestbookForm from "../GuestbookForm";
 
 const ContactSection = () => (
   <section id="contact" className="section-spacing bg-secondary/30">

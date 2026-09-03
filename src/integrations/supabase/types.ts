@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      guestbook_entries: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          note: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          note?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          note?: string | null
+        }
+        Relationships: []
+      }
       messages: {
         Row: {
           created_at: string
