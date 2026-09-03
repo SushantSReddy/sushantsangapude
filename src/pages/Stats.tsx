@@ -69,11 +69,14 @@ const Stats = () => {
       });
   }, [isAdmin]);
 
-  const signIn = () =>
-    supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: `${window.location.origin}/stats` },
+  const signIn = async () => {
+    const result = await lovable.auth.signInWithOAuth("google", {
+      redirect_uri: `${window.location.origin}/stats`,
     });
+    if (result.error) {
+      console.error("Sign-in failed:", result.error);
+    }
+  };
 
   const signOut = () => supabase.auth.signOut();
 
